@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import BettingLineCard from '@/components/BettingLineCard'
-
-export default function Home() {
-  return (
-      <BettingLineCard/>
-  );
+function Login() {
+    return (
+        <div>Login</div>
+    )
 }
+
+export default Login
