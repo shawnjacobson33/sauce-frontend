@@ -1,9 +1,11 @@
 import React from 'react'
 
-function Login() {
+function SignUp() {
     return (
-        <div>Login</div>
+        <div className="flex flex-col items-center justify-center h-screen bg-black">
+
+        </div>
     )
 }
 
-export default Login
+export default SignUp
