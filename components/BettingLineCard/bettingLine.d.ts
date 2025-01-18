@@ -4,4 +4,5 @@ export interface BettingLine {
     game: string
     line: string
     market: string
+    rank: float
 }

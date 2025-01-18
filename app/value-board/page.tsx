@@ -4,7 +4,8 @@ import BettingLineCard from '@/components/BettingLineCard'
 import FilterBar from '@/components/FilterBar'
 import mockBettingLines from '@/testData/mockBettingLines'
 
-export default function Home() {
+
+export default function ValueBoard() {
   return (
 
       <div className="flex flex-col items-center justify-center bg-black">
@@ -16,7 +17,6 @@ export default function Home() {
               })}
           </div>
       </div>
-
 
   );
 }
