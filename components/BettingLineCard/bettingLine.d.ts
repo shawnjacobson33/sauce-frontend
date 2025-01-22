@@ -1,8 +1,12 @@
 export interface BettingLine {
-    id: string
-    subject: string
+    _id: string
+    one_click_url: string
+    bookmaker: string
+    league: string
     game: string
-    line: string
     market: string
-    rank: float
+    label: string
+    subject: string
+    line: string
+    ev: float
 }
