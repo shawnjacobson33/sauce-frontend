@@ -1,8 +1,12 @@
 'use client'
 
 import React from 'react'
+import { useRouter } from 'next/navigation';
+
 
 function SignUp() {
+
+    const router = useRouter()
 
     const [formInput, setFormInput] = React.useState({
         username: '',
@@ -25,13 +29,19 @@ function SignUp() {
                 body: JSON.stringify(formInput)
             })
 
-            if (!response.ok) {
-                throw new Error("network error!")
+            console.log(response)
+            if (response.ok) {
+
+                const { token, user } = await response.json()
+
+                document.cookie = `token=${token}; max-age=86400; Secure; HttpOnly; Same-Site=strict`;
+                localStorage.setItem('user', JSON.stringify(user))
+
+                router.push('/value-board')
+
+            } else {
+                alert("Invalid Credentials")
             }
-
-            const serverData = await response.json()
-
-            console.log("Server Response:", serverData)
 
         } catch (e) {
             console.log("Error: ", e)

@@ -12,11 +12,17 @@ export default async function ValueBoard() {
 
     const bettingLines: BettingLine[] = await response.json()
 
+    const leagues: string[] = ["NBA", "NCAAM"]
+
+    const bookmakers: string[] = ["PrizePicks", "Underdog", "Sleeper", "DraftKings", "FanDuel"]
+
     return (
         <div className="flex flex-col items-center justify-center bg-black">
-            <FilterBar />
-            <FilterBar />
-            <div className="grid grid-cols-4 w-[50rem] bg-blue-700">
+            <div className="flex flex-col items-center justify-center p-4">
+                <FilterBar filtertableType="league" filterables={leagues}/>
+                <FilterBar filtertableType="bookmaker" filterables={bookmakers}/>
+            </div>
+            <div className="grid grid-cols-4 w-[54rem] pl-2">
                 {bettingLines.map((bettingLine) => {
                     return <BettingLineCard key={bettingLine._id} bettingLine={bettingLine}/>
                 })}
