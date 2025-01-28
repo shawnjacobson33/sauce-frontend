@@ -19,17 +19,20 @@ export default async function ValueBoard() {
         const bookmakers: string[] = ["PrizePicks", "Underdog", "Sleeper", "DraftKings", "FanDuel"]
 
         return (
-            <div className="flex flex-col items-center justify-center bg-black">
-                <div className="flex flex-col items-center justify-center p-4">
-                    <FilterBar filterableType="league" filterables={leagues}/>
-                    <FilterBar filterableType="bookmaker" filterables={bookmakers}/>
-                </div>
-                <div className="grid grid-cols-4 w-[54rem] pl-2">
-                    {bettingLines.map((bettingLine) => {
-                        return <BettingLineCard key={bettingLine._id} bettingLine={bettingLine}/>
-                    })}
+            <div className='flex flex-col items-center justify-center bg-black'>
+                <div className="w-[51.5rem] ">
+                    <div className="flex flex-col items-center justify-center p-4">
+                        <FilterBar filterableType="league" filterables={leagues}/>
+                        <FilterBar filterableType="bookmaker" filterables={bookmakers}/>
+                    </div>
+                    <div className="grid grid-cols-4 pl-3">
+                        {bettingLines.map((bettingLine) => {
+                            return <BettingLineCard key={bettingLine._id} bettingLine={bettingLine}/>
+                        })}
+                    </div>
                 </div>
             </div>
+
         );
 
     }

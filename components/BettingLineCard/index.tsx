@@ -27,12 +27,13 @@ const Index = ({ bettingLine }: BettingLineCardProps) => {
     return (
         <div
             className={`flex flex-col items-center justify-between w-[94%] h-[98%] border-[0.1rem] ${getBorderColor()} 
-            shadow-md rounded`}>
-            <div className="w-[55%] h-[32%] mt-3">
+            shadow-md rounded`}
+        >
+            <div className="w-[55%] h-[32%] m-4">
                 <Image
-                    src={`/subject-jerseys/${imageFileName}.png`}
+                    src={`/subjects/${imageFileName}.png`}
                     alt={bettingLine.subject}
-                    width={400}
+                    width={200}
                     height={200}
                 />
             </div>
