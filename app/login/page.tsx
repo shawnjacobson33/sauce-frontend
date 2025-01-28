@@ -19,24 +19,23 @@ function LogIn() {
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
-
         try {
-            const response = await fetch('http://localhost:8080/users/auth', {
+            const response = await fetch('http://localhost:8000/users/login', {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             })
 
-            if (response.ok) {
-                const { token, user } = await response.json()
+            const responseData = await response.json()
 
-                document.cookie = `token=${token}; max-age=86400; Secure; HttpOnly; SameSite=Strict`;
-                localStorage.setItem('user', JSON.stringify(user))
+            if (responseData.status_code == 200) {
+                document.cookie = `token=${responseData.token}; max-age=86400; Secure; HttpOnly;`;
+                localStorage.setItem('user', responseData.user)
 
                 router.push('/value-board')
 
             } else {
-                alert("Invalid Credentials!")
+                alert(responseData.detail)
             }
 
         } catch (e) {
@@ -76,7 +75,6 @@ function LogIn() {
                     Submit
                 </button>
             </form>
-
         </div>
     )
 }

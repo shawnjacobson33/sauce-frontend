@@ -3,8 +3,11 @@ import Image from 'next/image'
 
 import { BettingLine } from '@/components/BettingLineCard/bettingLine'
 
+type BettingLineCardProps = {
+    bettingLine: BettingLine
+}
 
-const Index: React.FC<{ bettingLine: BettingLine }> = ({ bettingLine }) => {
+const Index = ({ bettingLine }: BettingLineCardProps) => {
     const imageFileName: string = bettingLine.subject.split(' ').join('-').toLowerCase()
 
     const getBorderColor = () => {

@@ -19,28 +19,26 @@ function SignUp() {
         setFormInput({...formInput, [name]: value})
     }
 
-    const handleOnSubmit = async (e: { preventDefault: () => void; })  => {
+    const handleSubmit = async (e: { preventDefault: () => void; })  => {
         try {
             e.preventDefault()
 
-            const response = await fetch('http://localhost:8080/users/register', {
+            const response = await fetch('http://localhost:8000/users/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formInput)
             })
 
-            console.log(response)
-            if (response.ok) {
+            const responseData = await response.json()
 
-                const { token, user } = await response.json()
-
-                document.cookie = `token=${token}; max-age=86400; Secure; HttpOnly; Same-Site=strict`;
-                localStorage.setItem('user', JSON.stringify(user))
+            if (responseData.status_code == 200) {
+                document.cookie = `token=${responseData.token}; max-age=86400; Secure; HttpOnly; Same-Site=strict`;
+                localStorage.setItem('user', JSON.stringify(responseData.user))
 
                 router.push('/value-board')
 
             } else {
-                alert("Invalid Credentials")
+                alert(responseData.detail)
             }
 
         } catch (e) {
@@ -54,7 +52,7 @@ function SignUp() {
             <div className="border border-red-500 shadow-md shadow-red-500 mb-[8rem] p-[3rem] rounded">
                 <div className="font-bold text-3xl text-white">Create an Account</div>
             </div>
-            <form className="flex flex-col gap-4" onSubmit={handleOnSubmit}>
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                 <input
                     type='text'
                     name='username'

@@ -9,8 +9,8 @@ function Home() {
             <div className="border border-red-500 shadow-md shadow-red-500 mb-[8rem] p-[3rem] rounded">
                 <div className="font-bold text-3xl text-white">Sauce</div>
             </div>
-            <CustomButton text="Login" location='/log-in'/>
-            <CustomButton text="Sign Up" location='/sign-up'/>
+            <CustomButton text="Login" location='/login'/>
+            <CustomButton text="Sign Up" location='/register'/>
         </div>
     )
 }

@@ -1,12 +1,18 @@
 import React from 'react'
 import Image from "next/image";
 
-function Index({ filtertableType, filterables }) {
+
+type FilterBarProps = {
+    filterableType: string;
+    filterables: string[];
+}
+
+function Index({ filterableType, filterables }: FilterBarProps) {
     return (
         <div className="border-[0.10rem] border-white rounded inline-flex space-x-5 w-[50rem] h-[6rem] p-4 m-1">
             {filterables.map((filterable: string) => {
                 return (<Image
-                    src={`/${filtertableType}-logos/${filterable.split(' ').join().toLowerCase()}.png`}
+                    src={`/${filterableType}-logos/${filterable.split(' ').join().toLowerCase()}.png`}
                     alt={filterable}
                     key={filterable}
                     width="65"

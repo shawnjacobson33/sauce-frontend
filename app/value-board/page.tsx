@@ -8,25 +8,34 @@ import FilterBar from '@/components/FilterBar'
 
 export default async function ValueBoard() {
 
-    const response = await fetch('http://localhost:8000/betting_lines')
+    const response = await fetch('http://localhost:8000/data/betting_lines')
 
-    const bettingLines: BettingLine[] = await response.json()
+    if (response.ok) {
 
-    const leagues: string[] = ["NBA", "NCAAM"]
+        const bettingLines: BettingLine[] = await response.json()
 
-    const bookmakers: string[] = ["PrizePicks", "Underdog", "Sleeper", "DraftKings", "FanDuel"]
+        const leagues: string[] = ["NBA", "NCAAM"]
+
+        const bookmakers: string[] = ["PrizePicks", "Underdog", "Sleeper", "DraftKings", "FanDuel"]
+
+        return (
+            <div className="flex flex-col items-center justify-center bg-black">
+                <div className="flex flex-col items-center justify-center p-4">
+                    <FilterBar filterableType="league" filterables={leagues}/>
+                    <FilterBar filterableType="bookmaker" filterables={bookmakers}/>
+                </div>
+                <div className="grid grid-cols-4 w-[54rem] pl-2">
+                    {bettingLines.map((bettingLine) => {
+                        return <BettingLineCard key={bettingLine._id} bettingLine={bettingLine}/>
+                    })}
+                </div>
+            </div>
+        );
+
+    }
 
     return (
-        <div className="flex flex-col items-center justify-center bg-black">
-            <div className="flex flex-col items-center justify-center p-4">
-                <FilterBar filtertableType="league" filterables={leagues}/>
-                <FilterBar filtertableType="bookmaker" filterables={bookmakers}/>
-            </div>
-            <div className="grid grid-cols-4 w-[54rem] pl-2">
-                {bettingLines.map((bettingLine) => {
-                    return <BettingLineCard key={bettingLine._id} bettingLine={bettingLine}/>
-                })}
-            </div>
-        </div>
+        <p>[{response.status} Error: {JSON.stringify(await response.json())}] Sorry, could not load betting lines!</p>
     );
+
 }
