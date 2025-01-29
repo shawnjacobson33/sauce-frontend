@@ -47,7 +47,7 @@ const Index = ({ bettingLine }: BettingLineCardProps) => {
             </div>
             <div className="w-[55%] h-[18%] mb-3">
                 <Image
-                    src={`/bookmaker-images/${bettingLine.bookmaker}.png`}
+                    src={`/bookmakers/${bettingLine.bookmaker.toLowerCase()}.png`}
                     alt={bettingLine.bookmaker}
                     width={400}
                     height={200}
